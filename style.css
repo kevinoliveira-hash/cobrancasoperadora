@@ -1,0 +1,388 @@
+/* CSS Variables for consistency and authority */
+:root {
+    --primary-bg: linear-gradient(135deg, #0a1a2a 0%, #1e3a5f 100%);
+    --secondary-bg: #112240;
+    --accent-color: #1e90ff;
+    --accent-hover: #42a5f5;
+    --text-primary: #ffffff;
+    --text-secondary: #cbd5e1;
+    --text-muted: #90caf9;
+    --shadow-color: rgba(30, 144, 255, 0.3);
+    --border-radius: 15px;
+    --transition: all 0.3s ease;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--primary-bg);
+    color: var(--text-secondary);
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* Container principal with glassmorphism effect */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: rgba(17, 34, 64, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 32px var(--shadow-color), 0 0 60px rgba(30, 144, 255, 0.1), 0 0 20px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-hover), var(--accent-color));
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+/* Menu de navegação */
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: rgba(30, 144, 255, 0.1);
+}
+
+.nav-link:hover {
+    background: #1e90ff;
+    color: #0a1a2a;
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    background: #1e90ff;
+    color: #0a1a2a;
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 36px;
+    font-weight: 900;
+    font-family: 'Arial Black', Arial, sans-serif;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #1e90ff;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.resumo h2 {
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Campos do formulário */
+.field {
+    margin-bottom: 20px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #e0e0e0;
+    font-size: 16px;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #2c2c2c;
+    color: #e0e0e0;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: #90caf9;
+    outline: none;
+    background: #1e1e1e;
+    box-shadow: 0 0 10px #90caf9;
+}
+
+.field textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Botões */
+button {
+    background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(66, 165, 245, 0.6);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(66, 165, 245, 0.8);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Resumo */
+.resumo {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(44, 44, 44, 0.9);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 10px;
+    border-left: 5px solid var(--accent-color);
+    border-right: 5px solid var(--accent-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.resumo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+.resumo textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #1e1e1e;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+/* Chamados */
+.chamados-section {
+    margin-top: 40px;
+}
+
+.chamados-section h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.chamados-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.chamado-card {
+    background: #2c2c2c;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid #90caf9;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tracking-number {
+    font-weight: bold;
+    color: #1e90ff;
+    font-size: 18px;
+}
+
+.cliente {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.card-body p {
+    margin: 5px 0;
+    color: #e0e0e0;
+    font-size: 14px;
+}
+
+.card-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.card-actions button {
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background: #ffa726;
+    color: white;
+}
+
+.btn-edit:hover {
+    background: #fb8c00;
+}
+
+.btn-delete {
+    background: #e53935;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #d32f2f;
+}
+
+.btn-finalize {
+    background: #43a047;
+    color: white;
+}
+
+.btn-finalize:hover {
+    background: #388e3c;
+}
+
+/* Status Finalizado */
+.status-finalizado {
+    color: #43a047;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Texto de ajuda */
+.help-text {
+    font-size: 12px;
+    color: #90caf9;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Feedback */
+.feedback {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.feedback.success {
+    background: #4caf50;
+    color: white;
+    opacity: 1;
+}
+
+.feedback.error {
+    background: #f44336;
+    color: white;
+    opacity: 1;
+}
+
+.feedback.info {
+    background: #2196f3;
+    color: white;
+    opacity: 1;
+}
+
+/* Animações para botões */
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(66, 165, 245, 0.8);
+    transition: all 0.3s ease;
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+}

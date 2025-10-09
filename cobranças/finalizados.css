@@ -1,0 +1,58 @@
+/* Use the same theme as the main style.css for consistency */
+@import url('../style.css');
+
+/* Additional specific styles for finalizados page */
+.operadora-section {
+    border: 2px solid #3498db;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    background-color: #ecf0f1;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    flex: 1 1 300px;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.operadora-section h3 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+.chamados-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chamado-card {
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.chamado-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #34495e;
+}
+
+.card-body p {
+    margin: 4px 0;
+    color: #7f8c8d;
+    font-size: 0.9em;
+}

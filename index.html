@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gerar Cobrança</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link active">Gerar Cobrança</a>
+            <a href="cobranças/chamados.html" class="nav-link">Chamados em Atendimento</a>
+            <a href="cobranças/finalizados.html" class="nav-link">Chamados Finalizados</a>
+        </nav>
+        <h1>COBRANÇAS BESTLIFE</h1>
+        <form id="cobrancaForm" autocomplete="off">
+            <div class="field">
+                <label for="operadora">Operadora:</label>
+                <select id="operadora" required>
+                    <option value="">Selecione a Operadora</option>
+                    <!-- Options will be populated by JS -->
+                </select>
+            </div>
+            <div class="field">
+                <label for="cliente">Nome do Cliente:</label>
+                <input type="text" id="cliente" placeholder="Digite o nome do cliente" required autocomplete="off" />
+            </div>
+            <div class="field">
+                <label for="cpfCnpj">CPF ou CNPJ:</label>
+                <input type="text" id="cpfCnpj" placeholder="000.000.000-00 ou 00.000.000/0000-00" required maxlength="18" autocomplete="off" />
+                <small class="help-text">Formato será aplicado automaticamente</small>
+            </div>
+            <div class="field">
+                <label for="tipoCobranca">Tipo de Cobrança:</label>
+                <select id="tipoCobranca" required>
+                    <option value="">Selecione</option>
+                    <!-- Options will be populated by JS -->
+                </select>
+            </div>
+            <div class="field">
+                <label for="proposta">Proposta:</label>
+                <input type="text" id="proposta" placeholder="Digite o número da proposta" required autocomplete="off" />
+            </div>
+            <div class="field">
+                <label for="parcela">Parcela:</label>
+                <input type="text" id="parcela" placeholder="01" value="01" required autocomplete="off" />
+            </div>
+            <div class="button-group">
+                <button type="button" id="limpar">Limpar Formulário</button>
+            </div>
+        </form>
+        <div class="resumo">
+            <h2>Mensagem da Cobrança</h2>
+            <textarea id="mensagem" rows="12"></textarea>
+            <small class="help-text">Edite a mensagem se necessário antes de gerar</small>
+            <div class="button-group">
+                <button id="gerar">Gerar Cobrança</button>
+                <button id="copiar">Copiar Cobrança</button>
+            </div>
+            <div id="feedback" class="feedback"></div>
+        </div>
+
+
+    </div>
+    <script src="script.js"></script>
+    <script>localStorage.clear();</script>
+</body>
+</html>

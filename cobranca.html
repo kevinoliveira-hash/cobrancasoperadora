@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cobrança Gerada</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Gerar Cobrança</a>
+            <a href="cobranças/chamados.html" class="nav-link">Chamados em Atendimento</a>
+        </nav>
+        <h1>Cobrança Gerada</h1>
+        <div id="cobrancaDetails"></div>
+        <div class="resumo">
+            <h2>Mensagem da Cobrança</h2>
+            <textarea id="mensagemCobranca" rows="12" readonly></textarea>
+            <button id="copiarCobranca">Copiar Cobrança</button>
+        </div>
+        <button id="abrirChamados">Abrir Chamados em Atendimento</button>
+    </div>
+    <script>
+        const cobrancaData = JSON.parse(localStorage.getItem('cobrancaData')) || {};
+        const mensagemCobranca = document.getElementById('mensagemCobranca');
+        const detailsDiv = document.getElementById('cobrancaDetails');
+
+        const chamadosFinalizados = JSON.parse(localStorage.getItem('chamadosFinalizados')) || [];
+        const isFinalizado = chamadosFinalizados.some(c => c.trackingNumber === cobrancaData.trackingNumber);
+
+        detailsDiv.innerHTML = `
+            <p><strong>Operadora:</strong> ${cobrancaData.operadora || ''}</p>
+            <p><strong>Cliente:</strong> ${cobrancaData.cliente || ''}</p>
+            <p><strong>CPF/CNPJ:</strong> ${cobrancaData.cpfCnpj || ''}</p>
+            <p><strong>Tipo de Cobrança:</strong> ${cobrancaData.tipoCobranca || ''}</p>
+            <p><strong>Proposta:</strong> ${cobrancaData.proposta || ''}</p>
+            <p><strong>Parcela:</strong> ${cobrancaData.parcela || ''}</p>
+            <p><strong>Número de Acompanhamento:</strong> ${cobrancaData.trackingNumber || ''}</p>
+            ${isFinalizado ? '<p class="status-finalizado"><strong>Status do Chamado:</strong> Finalizado</p>' : ''}
+        `;
+
+        mensagemCobranca.value = localStorage.getItem('cobrancaMessage') || '';
+
+        document.getElementById('copiarCobranca').addEventListener('click', () => {
+            navigator.clipboard.writeText(mensagemCobranca.value).then(() => {
+                alert('Cobrança copiada!');
+            });
+        });
+
+        document.getElementById('abrirChamados').addEventListener('click', () => {
+            window.open('cobranças/chamados.html', '_blank');
+        });
+    </script>
+</body>
+</html>

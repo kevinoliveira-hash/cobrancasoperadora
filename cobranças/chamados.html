@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chamados em Atendimento</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-menu">
+            <a href="../index.html" class="nav-link">Gerar Cobrança</a>
+            <a href="chamados.html" class="nav-link active">Chamados em Atendimento</a>
+            <a href="finalizados.html" class="nav-link">Chamados Finalizados</a>
+            <a href="lixeira.html" class="nav-link">Lixeira</a>
+        </nav>
+        <h1>CHAMADOS EM ATENDIMENTO</h1>
+
+        <!-- Formulário para editar chamado (inicialmente oculto) -->
+        <form id="editForm" style="display: none;" autocomplete="off">
+            <h3>Editar Chamado</h3>
+            <div class="field half-width">
+                <label for="editCliente">Cliente:</label>
+                <input type="text" id="editCliente" required autocomplete="off" />
+            </div>
+            <div class="field half-width">
+                <label for="editStatus">Status:</label>
+                <select id="editStatus" required>
+                    <option value="1 - Cobrar a Operadora">1 - Cobrar a Operadora</option>
+                    <option value="2 - Acompanhando">2 - Acompanhando</option>
+                    <option value="3 - Aguardando Resposta">3 - Aguardando Resposta</option>
+                    <option value="4 - Recobrar">4 - Recobrar</option>
+                    <option value="5 - Finalizado">5 - Finalizado</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="editDescricao">Descrição:</label>
+                <textarea id="editDescricao" required autocomplete="off"></textarea>
+            </div>
+            <div class="field">
+                <label for="editInformacoes">Informações Adicionais:</label>
+                <textarea id="editInformacoes" autocomplete="off"></textarea>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" class="btn-save">Salvar</button>
+                <button type="button" id="cancelEdit" class="btn-cancel">Cancelar</button>
+            </div>
+        </form>
+
+        <!-- Cards de chamados abertos -->
+        <div class="chamados-lista" id="chamadosContainer">
+            <!-- Cards de chamados serão inseridos dinamicamente aqui -->
+        </div>
+        <script src="./chamados.js"></script>
+    </div>
+</body>
+</html>
