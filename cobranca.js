@@ -20,10 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // Load the last tracking number
+    // Load the tracking number from cobrancaData
     const trackingNumberSpan = document.getElementById('trackingNumber');
-    const lastTracking = localStorage.getItem('lastTrackingNumber');
-    trackingNumberSpan.textContent = lastTracking ? String(lastTracking).padStart(2, '0') : 'N/A';
+    trackingNumberSpan.textContent = cobrancaData.trackingNumber || 'N/A';
 
     // Copy button event
     document.getElementById('copiarCobranca').addEventListener('click', () => {

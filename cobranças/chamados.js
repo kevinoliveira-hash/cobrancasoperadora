@@ -1,13 +1,58 @@
-const chamadosContainer = document.getElementById('chamadosContainer');
-const editForm = document.getElementById('editForm');
-const editCliente = document.getElementById('editCliente');
-const editStatus = document.getElementById('editStatus');
-const editDescricao = document.getElementById('editDescricao');
-const editInformacoes = document.getElementById('editInformacoes');
-const cancelEditBtn = document.getElementById('cancelEdit');
+// Classe para gerenciar o armazenamento local
+class StorageManager {
+    static getItem(key) {
+        try {
+            return JSON.parse(localStorage.getItem(key));
+        } catch {
+            return null;
+        }
+    }
 
-let chamados = JSON.parse(localStorage.getItem('chamados')) || [];
-let currentEditId = null;
+    static setItem(key, value) {
+        try {
+            localStorage.setItem(key, JSON.stringify(value));
+            return true;
+        } catch {
+            return false;
+        }
+    }
+}
+
+// Classe para gerenciar chamados
+class ChamadosManager {
+    constructor() {
+        this.container = document.getElementById('chamadosContainer');
+        this.editForm = document.getElementById('editForm');
+        this.editCliente = document.getElementById('editCliente');
+        this.editStatus = document.getElementById('editStatus');
+        this.editDescricao = document.getElementById('editDescricao');
+        this.editInformacoes = document.getElementById('editInformacoes');
+        this.cancelEditBtn = document.getElementById('cancelEdit');
+        this.chamados = StorageManager.getItem('chamados') || [];
+        this.currentEditId = null;
+
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        this.editForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.saveEdit();
+        });
+
+        this.cancelEditBtn.addEventListener('click', () => {
+            this.hideEditForm();
+        });
+    }
+
+    hideEditForm() {
+        this.editForm.style.display = 'none';
+        this.currentEditId = null;
+    }
+}
+
+// Instância do gerenciador de chamados
+const chamadosManager = new ChamadosManager();
 
 // Render cards of chamados
 function renderTable() {
@@ -98,35 +143,7 @@ function finalizarChamadoById(id) {
     }
 }
 
-// Add chamado automatically from cobranca
-function adicionarChamadoAutomatico(cobranca) {
-    let trackingNumber = parseInt(localStorage.getItem('trackingNumber')) || 1;
-    const newChamado = {
-        id: String(Date.now()),
-        trackingNumber: String(trackingNumber).padStart(2, '0'),
-        cliente: cobranca.cliente,
-        operadora: cobranca.operadora,
-        cpfCnpj: cobranca.cpfCnpj,
-        status: '1 - Cobrar a Operadora',
-        descricao: 'Cobrança gerada automaticamente',
-        informacoes: ''
-    };
-    chamados.push(newChamado);
-    localStorage.setItem('chamados', JSON.stringify(chamados));
-    localStorage.setItem('trackingNumber', trackingNumber + 1);
-    renderTable();
 
-    const operadora = cobranca.operadora.toLowerCase();
-    if (window.opener && !window.opener.closed) {
-        try {
-            if (window.opener.location.href.includes(operadora + '.html')) {
-                window.opener.location.reload();
-            }
-        } catch (e) {
-            // Ignore cross-origin errors
-        }
-    }
-}
 
 document.addEventListener('DOMContentLoaded', () => {
     // Event listeners

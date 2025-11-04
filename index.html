@@ -3,66 +3,80 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gerar Cobrança - Bestlife</title>
+    <title>Gerador de Cobranças - Bestlife</title>
+    <link rel="icon" href="imagens/bestlifelogooficial.png" type="image/png">
     <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
-        <nav class="nav-menu" aria-label="Menu de navegação principal">
-            <a href="index.html" class="nav-link active" aria-current="page">Gerar Cobrança</a>
-            <a href="cobranças/chamados.html" class="nav-link">Chamados em Atendimento</a>
-            <a href="cobranças/finalizados.html" class="nav-link">Chamados Finalizados</a>
-        </nav>
-        <h1>COBRANÇAS BESTLIFE</h1>
-        <form id="cobrancaForm" autocomplete="off" aria-label="Formulário para gerar cobrança">
-            <div class="field">
-                <label for="operadora">Operadora:</label>
-                <select id="operadora" required aria-required="true" aria-describedby="operadoraHelp">
-                    <option value="">Selecione a Operadora</option>
-                    <!-- Options will be populated by JS -->
-                </select>
-                <small id="operadoraHelp" class="help-text">Selecione a operadora para a cobrança</small>
+        <header class="header">
+            <div class="logo-container">
+                <img src="imagens/bestlifelogooficial.png" alt="Bestlife Logo" class="logo">
             </div>
-            <div class="field">
-                <label for="cliente">Nome do Cliente:</label>
-                <input type="text" id="cliente" placeholder="Digite o nome do cliente" required autocomplete="off" aria-required="true" />
+            <h1>COBRANÇAS BESTLIFE</h1>
+        </header>
+        <form id="cobrancaForm" autocomplete="off">
+            <div class="form-row">
+                <div class="field">
+                    <label for="operadora">Operadora:</label>
+                    <select id="operadora" required>
+                        <option value="">Selecione a Operadora</option>
+                        <option value="AMIL">AMIL</option>
+                        <option value="TRASMONTANO">TRASMONTANO</option>
+                        <option value="UNIHOSP">UNIHOSP</option>
+                        <option value="SÃO CRISTOVÃO">SÃO CRISTOVÃO</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="tipoCobranca">Tipo de Cobrança:</label>
+                    <select id="tipoCobranca" required>
+                        <option value="">Selecione o tipo</option>
+                    </select>
+                </div>
             </div>
-            <div class="field">
-                <label for="cpfCnpj">CPF ou CNPJ:</label>
-                <input type="text" id="cpfCnpj" placeholder="000.000.000-00 ou 00.000.000/0000-00" required maxlength="18" autocomplete="off" aria-required="true" />
-                <small class="help-text">Formato será aplicado automaticamente</small>
+
+            <div class="form-row">
+                <div class="field">
+                    <label for="cliente">Nome do Cliente:</label>
+                    <input type="text" id="cliente" placeholder="Nome completo do cliente" required />
+                </div>
+                <div class="field">
+                    <label for="cpfCnpj">CPF ou CNPJ:</label>
+                    <input type="text" id="cpfCnpj" placeholder="000.000.000-00 ou 00.000.000/0000-00" required maxlength="18" />
+                </div>
             </div>
-            <div class="field">
-                <label for="tipoCobranca">Tipo de Cobrança:</label>
-                <select id="tipoCobranca" required aria-required="true" aria-describedby="tipoCobrancaHelp">
-                    <option value="">Selecione</option>
-                    <!-- Options will be populated by JS -->
-                </select>
-                <small id="tipoCobrancaHelp" class="help-text">Selecione o tipo de cobrança</small>
+
+            <div class="form-row">
+                <div class="field">
+                    <label for="proposta">Número da Proposta:</label>
+                    <input type="text" id="proposta" placeholder="Digite o número da proposta" required />
+                </div>
+                <div class="field">
+                    <label for="parcela">Parcela:</label>
+                    <input type="text" id="parcela" placeholder="01" value="01" required pattern="[0-9]{2}" maxlength="2" />
+                </div>
             </div>
-            <div class="field">
-                <label for="proposta">Proposta:</label>
-                <input type="text" id="proposta" placeholder="Digite o número da proposta" required autocomplete="off" aria-required="true" />
+
+            <div class="message-section">
+                <h2>Mensagem da Cobrança</h2>
+                <textarea id="mensagem" rows="12" readonly></textarea>
             </div>
-            <div class="field">
-                <label for="parcela">Parcela:</label>
-                <input type="text" id="parcela" placeholder="01" value="01" required autocomplete="off" aria-required="true" />
-            </div>
-            <div class="button-group" role="group" aria-label="Botões do formulário">
-                <button type="button" id="limpar" aria-label="Limpar formulário">Limpar Formulário</button>
-                <button type="submit" id="gerar" aria-label="Gerar cobrança">Gerar Cobrança</button>
-                <button type="button" id="copiar" aria-label="Copiar cobrança">Copiar Cobrança</button>
+
+            <div class="button-group">
+                <button type="button" id="limpar" class="btn-secondary">
+                    <span class="icon">🔄</span> Limpar
+                </button>
+                <button type="submit" id="gerar" class="btn-primary">
+                    <span class="icon">✏️</span> Gerar
+                </button>
+                <button type="button" id="copiar" class="btn-accent">
+                    <span class="icon">📋</span> Copiar
+                </button>
             </div>
         </form>
-        <div class="resumo" aria-live="polite" aria-atomic="true">
-            <h2>Mensagem da Cobrança</h2>
-            <textarea id="mensagem" rows="12" aria-label="Mensagem da cobrança"></textarea>
-            <small class="help-text">Edite a mensagem se necessário antes de gerar</small>
-            <div id="feedback" class="feedback" role="alert" aria-live="assertive"></div>
-        </div>
+        <div id="feedback" class="feedback"></div>
     </div>
     <script src="script.js"></script>
-    <script>localStorage.clear();</script>
 </body>
 </html>

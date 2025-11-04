@@ -21,36 +21,6 @@
         </div>
         <button id="abrirChamados">Abrir Chamados em Atendimento</button>
     </div>
-    <script>
-        const cobrancaData = JSON.parse(localStorage.getItem('cobrancaData')) || {};
-        const mensagemCobranca = document.getElementById('mensagemCobranca');
-        const detailsDiv = document.getElementById('cobrancaDetails');
-
-        const chamadosFinalizados = JSON.parse(localStorage.getItem('chamadosFinalizados')) || [];
-        const isFinalizado = chamadosFinalizados.some(c => c.trackingNumber === cobrancaData.trackingNumber);
-
-        detailsDiv.innerHTML = `
-            <p><strong>Operadora:</strong> ${cobrancaData.operadora || ''}</p>
-            <p><strong>Cliente:</strong> ${cobrancaData.cliente || ''}</p>
-            <p><strong>CPF/CNPJ:</strong> ${cobrancaData.cpfCnpj || ''}</p>
-            <p><strong>Tipo de Cobrança:</strong> ${cobrancaData.tipoCobranca || ''}</p>
-            <p><strong>Proposta:</strong> ${cobrancaData.proposta || ''}</p>
-            <p><strong>Parcela:</strong> ${cobrancaData.parcela || ''}</p>
-            <p><strong>Número de Acompanhamento:</strong> ${cobrancaData.trackingNumber || ''}</p>
-            ${isFinalizado ? '<p class="status-finalizado"><strong>Status do Chamado:</strong> Finalizado</p>' : ''}
-        `;
-
-        mensagemCobranca.value = localStorage.getItem('cobrancaMessage') || '';
-
-        document.getElementById('copiarCobranca').addEventListener('click', () => {
-            navigator.clipboard.writeText(mensagemCobranca.value).then(() => {
-                alert('Cobrança copiada!');
-            });
-        });
-
-        document.getElementById('abrirChamados').addEventListener('click', () => {
-            window.open('cobranças/chamados.html', '_blank');
-        });
-    </script>
+    <script src="cobranca.js"></script>
 </body>
 </html>

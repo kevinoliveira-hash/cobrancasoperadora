@@ -8,7 +8,8 @@ let chamadosFinalizados = JSON.parse(localStorage.getItem('chamadosFinalizados')
 function renderFinalizados() {
     operadorasContainer.innerHTML = '';
 
-    const operadoras = ['AMIL', 'GNDI', 'TRASMONTANO', 'BLUEMED'];
+    // Get unique operadoras from chamadosFinalizados
+    const operadoras = [...new Set(chamadosFinalizados.map(c => c.operadora))];
     operadoras.forEach(operadora => {
         // Criar seção para a operadora
         const section = document.createElement('div');

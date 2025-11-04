@@ -1,2 +1,6 @@
-- [x] Adicionar autocomplete="off" ao formulário e campos em index.html
-- [x] Adicionar autocomplete="off" ao formulário e campos em cobranças/chamados.html
+- [x] Remover funções não utilizadas de script.js (renderChamados, deleteChamado, finalizeChamado)
+- [x] Padronizar IDs como strings em script.js
+- [x] Remover duplicação em cobranca.html e corrigir cobranca.js
+- [x] Atualizar finalizados.js para usar todas as operadoras dinamicamente
+- [x] Remover função não usada adicionarChamadoAutomatico de chamados.js
+- [x] Garantir consistência em localStorage
